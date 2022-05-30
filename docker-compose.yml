@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  awvs:
+    image: akkuman/awvs:latest
+    ports:
+      - 53443:3443
+    environment:
+      AWVS_USERNAME: test@admin.com
+      AWVS_PASSWORD: test1@admin.com
+      AWVS_APIKEY: 4de0e7ba28434d46a0d12e04898cc5a8
