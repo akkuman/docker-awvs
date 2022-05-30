@@ -4,7 +4,7 @@ services:
   awvs:
     image: akkuman/awvs:latest
     ports:
-      - 53443:3443
+      - 13443:3443
     environment:
       AWVS_USERNAME: test@admin.com
       AWVS_PASSWORD: test1@admin.com

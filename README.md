@@ -4,6 +4,8 @@
 
 ## 使用
 
+### docker-compose
+
 将 [docker-compose.yml](docker-compose.yml) 保存到你的机器上
 
 然后修改环境变量中的账号密码和apikey
@@ -12,6 +14,14 @@
 
 ```shell
 sudo docker-compose up -d
+```
+
+### docker
+
+或者你不想使用 `docker-compose`，也可以直接使用 `docker`
+
+```shell
+sudo docker run -dp 13443:3443 -e AWVS_USERNAME=test@admin.com -e AWVS_PASSWORD=test1@admin.com -e AWVS_APIKEY=4de0e7ba28434d46a0d12e04898cc5a8 akkuman/awvs
 ```
 
 ## 环境变量
