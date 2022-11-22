@@ -28,8 +28,8 @@ jobs:
         name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - 
-        name: Build downloader image
-        id: docker_build_downloader
+        name: Build base image
+        id: docker_build_base
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -37,10 +37,10 @@ jobs:
           push: false
           load: false
           cache-from: |
-            type=gha,scope=downloader
+            type=gha,scope=base
           cache-to: |
-            type=gha,scope=downloader
-          target: downloader
+            type=gha,scope=base
+          target: base
       -
         name: Build and push
         id: docker_build
@@ -54,6 +54,6 @@ jobs:
             akkuman/awvs:latest
           cache-from: |
             type=gha,scope=finally
-            type=gha,scope=downloader
+            type=gha,scope=base
           cache-to: type=gha,scope=finally
           target: finally

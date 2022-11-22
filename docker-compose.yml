@@ -1,11 +1,21 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wvs
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
   awvs:
-    image: akkuman/awvs:latest
+    image: akkuman/awvs:v15
     ports:
       - 13443:3443
     environment:
-      AWVS_USERNAME: test@admin.com
-      AWVS_PASSWORD: test1@admin.com
-      AWVS_APIKEY: 4de0e7ba28434d46a0d12e04898cc5a8
+      acunetix_user: test@admin.com
+      acunetix_password: Test1*1
+      acunetix_database: postgresql://postgres:postgres@db:5432/wvs
+      acunetix_token: 672f976f9f1a8e8d8742d5ccf7314c15
