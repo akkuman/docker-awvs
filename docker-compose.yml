@@ -11,7 +11,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
   awvs:
-    image: akkuman/awvs:v15
+    image: akkuman/awvs:v-15.1.221109177
     ports:
       - 13443:3443
     environment:
