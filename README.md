@@ -13,15 +13,7 @@
 然后使用命令
 
 ```shell
-sudo docker-compose up -d
-```
-
-### docker
-
-或者你不想使用 `docker-compose`，也可以直接使用 `docker`
-
-```shell
-sudo docker run -dp 13443:3443 -e acunetix_user=test@admin.com -e acunetix_password=test1@admin.com -e acunetix_token=4de0e7ba28434d46a0d12e04898cc5a8 akkuman/awvs
+sudo docker compose up -d
 ```
 
 ## 环境变量
