@@ -48,6 +48,7 @@ COPY --from=base /usr/local/bin/gosu* /usr/local/bin/
 
 COPY --from=base /home/acunetix/.acunetix /home/acunetix/.acunetix
 COPY --from=base /etc/.hosts /etc/.hosts
+COPY entrypoint.sh /entrypoint.sh
 
 RUN \
     # 检查 gosu 是否安装成功
@@ -55,13 +56,14 @@ RUN \
 	gosu nobody true && \
     # 添加 token
     sed -i "/log \"Main user is \$email\"/a if [[ \$acunetix_token =~ ^[a-f0-9]{32}$ ]]; then \"\$psql\" -v ON_ERROR_STOP=1 -qbc \"UPDATE users SET api_key='\$acunetix_token' WHERE user_id='986ad8c0a5b3df4d7028d5f3c06e936c';\" \"\$db\"; fi" /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
-    # 屏蔽 awvs 网站
-    sed -i "/declare -a acunetix_ini_values/a cat /etc/.hosts >> /etc/hosts" /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
     # 修正 wvsc.ini
     sed -i 's|^DataPath=\$data.*$|DataPath=/home/acunetix/.acunetix/data|g' /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
-    # 生成入口脚本
+    # 生成启动脚本
     cp /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh /home/acunetix/.acunetix/entrypoint.sh && \
-    chown acunetix:acunetix /home/acunetix/.acunetix/entrypoint.sh
+    chown acunetix:acunetix /home/acunetix/.acunetix/entrypoint.sh && \
+    # 给入口脚本添加可执行权限
+    chmod +x /entrypoint.sh
 
 EXPOSE 3443
-CMD ["gosu", "acunetix", "bash", "/home/acunetix/.acunetix/entrypoint.sh"]
+
+ENTRYPOINT ["/entrypoint.sh"]
