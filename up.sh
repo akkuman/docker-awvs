@@ -12,6 +12,8 @@ if [ $engine_only != 1 ]; then
     echo "attempting to stop previous database"
     ~/.$product_name/$version/database/bin/pg_ctl -D ~/.$product_name/db -w stop
 
+    rm -rf ~/.$product_name/db/postmaster.pid
+
     echo "attempting to start the db"
     setsid ~/.$product_name/$version/database/bin/pg_ctl -D ~/.$product_name/db -o "--port=$db_port" -w start
 fi
