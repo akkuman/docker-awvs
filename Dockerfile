@@ -15,10 +15,9 @@ RUN rm -rf /home/acunetix/.acunetix/db/* && \
     rm -rf /home/acunetix/.acunetix/logs/*
 
 # 下载破解相关文件
-ADD https://web.archive.org/web/20230508015048/https://www.fahai.org/aDisk/Awvs/awvs15_listen.zip /tmp/
+RUN wget -O /tmp/awvs15_listen.zip "https://web.archive.org/web/20230508015048/https://www.fahai.org/aDisk/Awvs/awvs15_listen.zip"
 
 RUN cd /tmp/ && \
-    ls -lh && \
     unzip awvs15_listen.zip && \
     chmod 444 /tmp/license_info.json && \
     chmod 444 /tmp/wa_data.dat && \
