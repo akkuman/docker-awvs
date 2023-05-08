@@ -15,7 +15,7 @@ RUN rm -rf /home/acunetix/.acunetix/db/* && \
     rm -rf /home/acunetix/.acunetix/logs/*
 
 # 下载破解相关文件
-ADD https://www.fahai.org/aDisk/Awvs/awvs15_listen.zip /tmp/
+ADD https://web.archive.org/web/20230508015048/https://www.fahai.org/aDisk/Awvs/awvs15_listen.zip /tmp/
 
 RUN cd /tmp/ && \
     unzip awvs15_listen.zip && \
