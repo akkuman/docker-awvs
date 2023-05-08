@@ -1,4 +1,4 @@
-FROM xrsec/awvs:v15 as base
+FROM xrsec/awvs:15.5 as base
 
 # 下载 gosu
 # https://github.com/tianon/gosu/releases
