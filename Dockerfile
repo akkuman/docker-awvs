@@ -55,7 +55,7 @@ RUN \
     gosu --version && \
 	gosu nobody true && \
     # 添加 token
-    sed -i "/log \"Main user is \$email\"/a if [[ \$acunetix_token =~ ^[a-f0-9]{32}$ ]]; then \"\$psql\" -v ON_ERROR_STOP=1 -qbc \"UPDATE users SET api_key='\$acunetix_token' WHERE user_id='986ad8c0a5b3df4d7028d5f3c06e936c';\" \"\$db\"; fi" /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
+    sed -i "/log \"Main user is \$email\"/a if [[ \$acunetix_token =~ ^[a-f0-9]{32}$ ]]; then \"\$psql\" -v ON_ERROR_STOP=1 -qbc \"UPDATE users SET api_key='\$acunetix_token',lang='cn' WHERE user_id='986ad8c0a5b3df4d7028d5f3c06e936c';\" \"\$db\"; fi" /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
     # 修正 wvsc.ini
     sed -i 's|^DataPath=\$data.*$|DataPath=/home/acunetix/.acunetix/data|g' /home/acunetix/.acunetix/v_?????????/backend/container-entrypoint.sh && \
     # 生成启动脚本
