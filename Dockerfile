@@ -18,7 +18,7 @@ RUN rm -rf /home/acunetix/.acunetix/db/* && \
 ADD https://web.archive.org/web/20230508015048/https://www.fahai.org/aDisk/Awvs/awvs15_listen.zip /tmp/
 
 RUN cd /tmp/ && \
-    ls && \
+    ls -lh && \
     unzip awvs15_listen.zip && \
     chmod 444 /tmp/license_info.json && \
     chmod 444 /tmp/wa_data.dat && \
